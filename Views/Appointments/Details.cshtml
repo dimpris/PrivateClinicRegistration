@@ -1,0 +1,48 @@
+﻿@model PrivateClinicRegistration.Models.Appointment
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTimeStart)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateTimeStart)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientFullname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PatientFullname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PatientPhone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Doctor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.Fullname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Service)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Service.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
