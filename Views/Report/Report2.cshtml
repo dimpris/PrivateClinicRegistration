@@ -1,10 +1,67 @@
-﻿
+﻿@model List<PrivateClinicRegistration.Controllers.ReportRow>
 
 @{
-    ViewData["Title"] = "Звіти";
+    ViewData["Title"] = "Записи лікаря";
 }
 
-<h2>Звіти</h2>
+<h2>Записи лікаря</h2>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/amstock.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<div id="chartdiv" style="width: 100%; height		: 500px;
+	font-size	: 11px;"></div>
 
+<script>
+    $(function() {
+        var chart = AmCharts.makeChart("chartdiv", {
+            "type": "serial",
+            "theme": "light",
+            "dataProvider": [
+                @foreach (var item in Model)
+                {<text>
+                     {
+                         "Name": "@item.Doctor",
+                         "Count": "@item.AppointmentCount"
+                     },
+                 </text>
+                }
+            ],
+            "valueField": "Count",
+            "titleField": "Name",
+
+            "balloon": {
+                "fixedPosition": false
+            },
+            "export": {
+                "enabled": false
+            },
+  "labelText": "[[percents]]%",
+        });
+    });
+</script>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Лікар</th>
+            <th>Кількість записів</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppointmentCount)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
